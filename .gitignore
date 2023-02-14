@@ -1,0 +1,12 @@
+/application/cache/session
+/application/logs
+/application/config/config.php
+/application/config/database.php
+/application/config/constants.php
+application/config/config.php
+application/config/constants.php
+application/config/database.php
+/nbproject/private/
+client_media/
+log1/
+/application/modules/company_dashboard

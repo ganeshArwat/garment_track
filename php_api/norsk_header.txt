@@ -1,0 +1,1 @@
+{"Host":"localhost:8015","Content-Type":"application\/json","Accept":"application\/json","NorskAccessKeyId":"P3FD3NOMDCL7SMQW","NorskSecretAccessKey":"SC2FJ5V7S7QPUHZAAD7RTUZRVEDLKXW7Q4MHOMWPFDUWL2BU","Content-Length":"1152"}

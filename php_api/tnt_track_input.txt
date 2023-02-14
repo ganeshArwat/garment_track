@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TrackRequest>
+  <SearchCriteria marketType="INTERNATIONAL" originCountry="US">
+    <ConsignmentNumber>A-I00210062202</ConsignmentNumber>
+  </SearchCriteria>
+  <LevelOfDetail>
+    <Complete destinationAddress="true" originAddress="true" package="true" shipment="true"/>
+    <POD format="URL"/>
+  </LevelOfDetail>
+</TrackRequest>

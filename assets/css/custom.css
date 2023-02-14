@@ -1,0 +1,35 @@
+/* .main-sidebar-header {
+    height: 110px;
+}
+
+.main-logo {
+    height: 6rem;
+}
+
+.main-sidebar-header {
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-sidemenu {
+    margin-top: 110px;
+}
+
+.side-menu {
+    padding: 15px 0 0;
+}
+
+.desktop-logo {
+    height: auto;
+}
+
+.sales-bar {
+    bottom: 0px;
+} */
+
+.container {
+    max-width: 96%;
+    margin: auto;
+}
