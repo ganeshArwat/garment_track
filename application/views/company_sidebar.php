@@ -147,17 +147,22 @@ if (isset($session_data['is_restrict']) && $session_data['is_restrict'] != 1) {
                             <!-- /Place this tag where you want the button to render. -->
                       
                             <!-- User -->
+                            <span class="app-brand-text-upper demo menu-text fw-bolder ms-2"><?php echo isset($session_data['name']) && $session_data['name'] != "" ?  $session_data['name'] : ""; ?></span>
+
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                                    
                                     <div class="avatar avatar-online">
                                         <img src="<?php echo BASE_URL; ?>assets/assets/img/avatars/user_avtar.png" alt class="w-px-40 h-auto rounded-circle" />
                                     </div>
+
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
                                         <a class="dropdown-item" href="#">
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
+                                                    
                                                     <div class="avatar avatar-online">
                                                         <img src="<?php echo BASE_URL; ?>assets/assets/img/avatars/user_avtar.png" alt class="w-px-40 h-auto rounded-circle" />
                                                     </div>
