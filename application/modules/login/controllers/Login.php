@@ -173,7 +173,7 @@ class Login extends MX_Controller
     {
         $this->load->helper('url');
         $this->session->unset_userdata('user');
-        redirect(site_url());
+        redirect(site_url('login/admin_login'));
     }
 
     function show_forgot_form()

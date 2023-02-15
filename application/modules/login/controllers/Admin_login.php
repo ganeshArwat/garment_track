@@ -534,7 +534,7 @@ class Admin_login extends MX_Controller
                     }
                 }
             } else {
-                redirect(site_url());
+                redirect(site_url('login/admin_login'));
             }
         }
     }
