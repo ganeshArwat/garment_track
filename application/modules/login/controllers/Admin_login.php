@@ -538,6 +538,8 @@ class Admin_login extends MX_Controller
             }
         }
     }
+
+
     function show_forgot_form()
     {
         $data = array();
