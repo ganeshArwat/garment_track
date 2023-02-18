@@ -14,7 +14,7 @@ class Optimize_table extends MX_Controller
 
             $session_data = $this->session->userdata('admin_user');
             $company_id = isset($session_data['com_id']) ? $session_data['com_id'] : '';
-            $db_name = "garment_track_theme_company_" . $company_id;
+            $db_name = "garment_track_company_" . $company_id;
             $index_qry = "SELECT DISTINCT TABLE_NAME, INDEX_NAME FROM INFORMATION_SCHEMA.STATISTICS WHERE TABLE_SCHEMA = '" . $db_name . "'";
             $index_qry_exe = $this->db->query($index_qry);
             $index_data = $index_qry_exe->result_array();

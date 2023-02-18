@@ -62,7 +62,7 @@ class User_login extends MX_Controller
 
 
                 $company_id =  $data['company_id'];
-                $conn = new mysqli(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, 'garment_track_theme_company_' . $company_id);
+                $conn = new mysqli(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, 'garment_track_company_' . $company_id);
                 if ($conn->connect_error) {
                     die("CAN NOT LOGIN");
                 } else {
@@ -184,7 +184,7 @@ class User_login extends MX_Controller
             }
             if (isset($post_data['company_id']) && $post_data['company_id'] > 0) {
                 $company_id = $post_data['company_id'];
-                $conn = new mysqli(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, 'garment_track_theme_company_' . $company_id);
+                $conn = new mysqli(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, 'garment_track_company_' . $company_id);
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
                 }
@@ -205,7 +205,7 @@ class User_login extends MX_Controller
                         $company_row = $qry_exe->row_array();
 
                         //GET LOGO USING SETTING
-                        $conn = new mysqli(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, 'garment_track_theme_company_' . $company_id);
+                        $conn = new mysqli(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, 'garment_track_company_' . $company_id);
                         if ($conn->connect_error) {
                             die("Connection failed: " . $conn->connect_error);
                         }
@@ -225,7 +225,7 @@ class User_login extends MX_Controller
                         $company_logo = isset($logo_path['logo_file']) ? $logo_path['logo_file'] : $company_row['logo'];
 
 
-                        $per_query = "SELECT per.config_key,per.url_key FROM garment_track_theme_company_$company_id.customer_users_permission_map cupm LEFT OUTER JOIN permission per ON (cupm.permission_id = per.id AND per.status = 1)  WHERE cupm.status = 1 AND cupm.user_id =" . $row['id'];
+                        $per_query = "SELECT per.config_key,per.url_key FROM garment_track_company_$company_id.customer_users_permission_map cupm LEFT OUTER JOIN permission per ON (cupm.permission_id = per.id AND per.status = 1)  WHERE cupm.status = 1 AND cupm.user_id =" . $row['id'];
                         $per_query_exe = $main_db->query($per_query);
                         $user_permission = $per_query_exe->result_array();
 

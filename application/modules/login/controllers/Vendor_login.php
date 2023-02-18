@@ -64,7 +64,7 @@ class Vendor_login extends MX_Controller
 
 
                 $company_id =  $data['company_id'];
-                $conn = new mysqli(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, 'garment_track_theme_company_' . $company_id);
+                $conn = new mysqli(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, 'garment_track_company_' . $company_id);
                 if ($conn->connect_error) {
                     die("CAN NOT LOGIN");
                 } else {
@@ -179,7 +179,7 @@ class Vendor_login extends MX_Controller
 
             if (isset($post_data['company_id']) && $post_data['company_id'] > 0) {
                 $company_id = $post_data['company_id'];
-                $conn = new mysqli(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, 'garment_track_theme_company_' . $company_id);
+                $conn = new mysqli(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, 'garment_track_company_' . $company_id);
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
                 }
@@ -201,7 +201,7 @@ class Vendor_login extends MX_Controller
                         $company_row = $qry_exe->row_array();
 
                         //GET LOGO USING SETTING
-                        $conn = new mysqli(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, 'garment_track_theme_company_' . $company_id);
+                        $conn = new mysqli(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, 'garment_track_company_' . $company_id);
                         if ($conn->connect_error) {
                             die("Connection failed: " . $conn->connect_error);
                         }

@@ -83,7 +83,7 @@ $session_data = isset($_SESSION['admin_user']) ? $_SESSION['admin_user'] : array
 $segment1 = $CI->uri->segment(1);
 $post_data =  $CI->input->post();
 if ($segment1 == 'api_mobile' && isset($post_data['company_id'])) {
-  $database_name = "garment_track_theme_company_" . $post_data['company_id'];
+  $database_name = "garment_track_company_" . $post_data['company_id'];
 } else {
   $all_header = getallheaders();
 
@@ -109,10 +109,10 @@ if ($segment1 == 'api_mobile' && isset($post_data['company_id'])) {
   }
 
   if ($company_id != '') {
-    $database_name = "garment_track_theme_company_" . $company_id;
+    $database_name = "garment_track_company_" . $company_id;
   } else {
     if (isset($session_data['is_restrict']) && $session_data['is_restrict'] == 2) {
-      $database_name = "garment_track_theme_company_" . $session_data['com_id'];
+      $database_name = "garment_track_company_" . $session_data['com_id'];
     } else {
       $database_name = "garment_track_theme";
     }
@@ -120,12 +120,12 @@ if ($segment1 == 'api_mobile' && isset($post_data['company_id'])) {
 
   if (isset($_GET['cron_company']) && $_GET['cron_company'] > 0) {
     $company_id = $_GET['cron_company'];
-    $database_name = "garment_track_theme_company_" . $company_id;
+    $database_name = "garment_track_company_" . $company_id;
   }
 
   if (isset($_GET['api_company_id']) && $_GET['api_company_id'] > 0) {
     $company_id = $_GET['api_company_id'];
-    $database_name = "garment_track_theme_company_" . $company_id;
+    $database_name = "garment_track_company_" . $company_id;
   }
 
 

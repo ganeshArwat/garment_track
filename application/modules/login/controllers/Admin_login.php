@@ -119,7 +119,7 @@ class Admin_login extends MX_Controller
 
                         $company_id = $row['id'];
                         if ($company_id > 1) {
-                            $conn = new mysqli(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, 'garment_track_theme_company_' . $company_id);
+                            $conn = new mysqli(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, 'garment_track_company_' . $company_id);
                             if ($conn->connect_error) {
                                 die("Connection failed: " . $conn->connect_error);
                             }
@@ -160,7 +160,7 @@ class Admin_login extends MX_Controller
             $data['company_id'] = isset($row['id']) ? $row['id'] : '';
             $data['company_sef'] = isset($row['sef_url']) ? $row['sef_url'] : '';
             $company_id =  $data['company_id'];
-            $conn = new mysqli(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, 'garment_track_theme_company_' . $company_id);
+            $conn = new mysqli(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, 'garment_track_company_' . $company_id);
             if ($conn->connect_error) {
                 die("CAN NOT LOGIN");
             } else {
@@ -395,7 +395,7 @@ class Admin_login extends MX_Controller
                 //GET LOGO USING SETTING
                 $company_id = $row['com_id'];
                 if ($company_id > 1) {
-                    $conn = new mysqli(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, 'garment_track_theme_company_' . $company_id);
+                    $conn = new mysqli(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, 'garment_track_company_' . $company_id);
                     if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                     }

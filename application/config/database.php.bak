@@ -97,10 +97,10 @@ if (isset($auth_token)) {
   $company_id = isset($decode_token_arr[1]) ? $decode_token_arr[1] : '';
 }
 if ($company_id != '') {
-  $database_name = "garment_track_theme_company_" . $company_id;
+  $database_name = "garment_track_company_" . $company_id;
 } else {
   if (isset($session_data['is_restrict']) && $session_data['is_restrict'] == 2) {
-    $database_name = "garment_track_theme_company_" . $session_data['com_id'];
+    $database_name = "garment_track_company_" . $session_data['com_id'];
   } else {
     $database_name = "garment_track_theme";
   }

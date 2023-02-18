@@ -329,7 +329,7 @@ class Script extends MX_Controller
 
             $session_data = $this->session->userdata('admin_user');
             $company_id = isset($session_data['com_id']) ? $session_data['com_id'] : '';
-            $db_name = "garment_track_theme_company_" . $company_id;
+            $db_name = "garment_track_company_" . $company_id;
 
             if (isset($company_db_table) && is_array($company_db_table) && count($company_db_table) > 0) {
                 foreach ($company_db_table as $ct_key => $ct_value) {
@@ -2813,7 +2813,7 @@ class Script extends MX_Controller
 
             $this->load->database();
             $this->load->dbutil();
-            $company_db_name = "garment_track_theme_company_" . $company_id;
+            $company_db_name = "garment_track_company_" . $company_id;
 
             if ($this->dbutil->database_exists($company_db_name)) {
 
@@ -2842,7 +2842,7 @@ class Script extends MX_Controller
         $data = $query_exe->result_array();
 
         foreach ($data as $key => $value) {
-            if (strpos(strtolower($value['Database']), 'garment_track_theme_company_') !== false) {
+            if (strpos(strtolower($value['Database']), 'garment_track_company_') !== false) {
                 $databases[] = $value['Database'];
             }
         }
@@ -2922,7 +2922,7 @@ class Script extends MX_Controller
         $data = $query_exe->result_array();
 
         foreach ($data as $key => $value) {
-            if (strpos(strtolower($value['Database']), 'garment_track_theme_company_') !== false) {
+            if (strpos(strtolower($value['Database']), 'garment_track_company_') !== false) {
                 $databases[] = $value['Database'];
             }
         }
@@ -2960,7 +2960,7 @@ class Script extends MX_Controller
         $data = $query_exe->result_array();
 
         foreach ($data as $key => $value) {
-            if (strpos(strtolower($value['Database']), 'garment_track_theme_company_') !== false) {
+            if (strpos(strtolower($value['Database']), 'garment_track_company_') !== false) {
                 $databases[] = $value['Database'];
             }
         }
