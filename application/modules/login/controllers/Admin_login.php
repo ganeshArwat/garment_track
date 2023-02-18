@@ -141,7 +141,7 @@ class Admin_login extends MX_Controller
 
                         $this->_display('admin_login_form', $data);
                     } else {
-                        $this->_display('show_404_page', array());
+                        $this->_display('admin_login_form', array());
                     }
                 }
             }
@@ -498,7 +498,9 @@ class Admin_login extends MX_Controller
         $session_data = $this->session->userdata('admin_user');
 
         $com_id = $session_data['com_id'];
+
         $sef = $session_data['sef_url'];
+        // echo "<pre>";print_r($sef);exit;
         if ($sef == '') {
             $sef =  get_cookie('cookie_name');
         }
@@ -530,7 +532,7 @@ class Admin_login extends MX_Controller
                     if ($sef == '' && $com_id == 1) {
                         redirect(site_url('login/admin_login'));
                     } else {
-                        redirect(site_url($sef));
+                        redirect(site_url('login/admin_login'));
                     }
                 }
             } else {

@@ -9,14 +9,14 @@ class Adminx extends MX_Controller
         $this->load->module('login/admin_login');
 
         $login = new Admin_login();
-        // $check_login = $login->_is_logged_in();
+        $check_login = $login->_is_logged_in();
         $check_login = true;
 
         if (!($check_login)) {
             $this->session->set_userdata('url_page', $url_page);
             $this->session->set_userdata('login_page', 'backend');
             $this->load->helper('url');
-            redirect(site_url());
+            redirect(site_url('login/admin_login'));
         }
     }
 
