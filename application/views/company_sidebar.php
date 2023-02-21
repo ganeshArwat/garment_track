@@ -144,7 +144,7 @@ if (isset($session_data['is_restrict']) && $session_data['is_restrict'] != 1) {
                             <!-- /Place this tag where you want the button to render. -->
                       
                             <!-- User -->
-                            <span class="app-brand-text-upper demo menu-text fw-bolder ms-2"><?php echo isset($session_data['name']) && $session_data['name'] != "" ?  $session_data['name'] : ""; ?></span>
+                            <span class="app-brand-text-upper demo menu-text fw-bolder ms-2"><?php echo isset($session_data['name']) && $session_data['name'] != "" ?  strtoupper($session_data['name']) : ""; ?></span>
 
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
@@ -165,8 +165,8 @@ if (isset($session_data['is_restrict']) && $session_data['is_restrict'] != 1) {
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <span class="fw-semibold d-block"><?php echo isset($session_data['name']) && $session_data['name'] != "" ?  $session_data['name'] : ""; ?></span>
-                                                    <small class="text-muted">Admin</small>
+                                                    <span class="fw-semibold d-block"><?php echo isset($session_data['name']) && $session_data['name'] != "" ?  strtoupper($session_data['name']) : ""; ?></span>
+                                                    <small class="text-muted"><?php echo isset($session_data['role_name']) && $session_data['role_name'] != "" ?  strtoupper($session_data['role_name']) : ""; ?></small>
                                                 </div>
                                             </div>
                                         </a>
