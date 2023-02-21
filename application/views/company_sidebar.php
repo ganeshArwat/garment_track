@@ -181,7 +181,7 @@ if (isset($session_data['is_restrict']) && $session_data['is_restrict'] != 1) {
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="#">
+                                        <a class="dropdown-item" href="<?php echo site_url('settings/show_form'); ?>">
                                             <i class="bx bx-cog me-2"></i>
                                             <span class="align-middle">Settings</span>
                                         </a>

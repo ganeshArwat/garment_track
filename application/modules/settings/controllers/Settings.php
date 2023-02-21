@@ -79,17 +79,17 @@ class Settings extends MX_Controller
                 $data['setting_id'][$value['config_key']] = $value['id'];
             }
         }
-        $data['get_all_email'] = get_all_itd_admin();
-        $data['all_company'] = get_all_billing_company();
-        $data['all_currency'] = get_all_currency();
-        $data['all_unit_type'] = all_unit_type();
+        $data['get_all_email'] = array();
+        $data['all_company'] = array();
+        $data['all_currency'] = array();
+        $data['all_unit_type'] = array();
 
         if (isset($sessiondata['is_restrict']) && $sessiondata['is_restrict'] == 2) {
             $userq = " AND company_id= " . $sessiondata['com_id'];
             $data['all_user'] = get_all_user($userq);
         }
 
-        $data['all_gstin_type'] = get_all_doc_type(" AND show_in_docket_shipper=1", "docket_doc_name");
+        $data['all_gstin_type'] = array();
         if (isset($mode) && $mode == "add_comments") {
             $data['mode'] = $mode;
         }
