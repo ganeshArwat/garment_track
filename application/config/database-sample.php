@@ -77,7 +77,7 @@ $active_record = true;
 $CI = &get_instance();
 $CI->load->library('session');
 // session_start();
-$database_name = "garment_track_theme";
+$database_name = "garment_track_";
 
 $session_data = isset($_SESSION['admin_user']) ? $_SESSION['admin_user'] : array();
 $segment1 = $CI->uri->segment(1);
@@ -114,7 +114,7 @@ if ($segment1 == 'api_mobile' && isset($post_data['company_id'])) {
     if (isset($session_data['is_restrict']) && $session_data['is_restrict'] == 2) {
       $database_name = "garment_track_company_" . $session_data['com_id'];
     } else {
-      $database_name = "garment_track_theme";
+      $database_name = "garment_track_";
     }
   }
 
@@ -159,7 +159,7 @@ $db['main_db'] = array(
   'hostname' => 'localhost',
   'username' => 'root',
   'password' => 'TrackmateLite#fb5421',
-  'database' => 'garment_track_theme',
+  'database' => 'garment_track_',
   'dbdriver' => 'mysqli',
   'dbprefix' => '',
   'pconnect' => false,

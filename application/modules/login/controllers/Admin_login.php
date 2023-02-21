@@ -421,21 +421,6 @@ class Admin_login extends MX_Controller
                         $main_db->query($addtoken_query);
                     }
 
-                    // GET SALESMAN ID FROM CUSTOMER
-                    if ($row['role'] == 7) {
-                        $cqry = "SELECT id as customer_id FROM customer c WHERE (salesman_id =" . $row['id'] . " OR salesman_id_2 =" . $row['id'] . " OR salesman_id_3 =" . $row['id'] . ") AND status IN(1,2)";
-                        $result = $conn->query($cqry);
-
-                        if ($result->num_rows > 0) {
-                            // output data of each row
-                            while ($row1 = $result->fetch_assoc()) {
-                                $customer_id[] = $row1['customer_id'];
-                                $customer_id_arry = implode(',', $customer_id);
-                            }
-                        } else {
-                            $customer_id_arry = 0;
-                        }
-                    }
 
                     $per_query = "SELECT per.config_key,per.url_key FROM user_permission_map upm LEFT OUTER JOIN permission per ON (upm.permission_id = per.id AND per.status = 1)  WHERE upm.status = 1 AND upm.user_id =" . $row['id'];
                     $per_query_exe = $main_db->query($per_query);
@@ -470,7 +455,6 @@ class Admin_login extends MX_Controller
                         'logo' =>  $company_logo,
                         'auth_token' => isset($authtoken) ? $authtoken : "",
                         'logged_in' => true,
-                        'customer_id' => isset($customer_id_arry)  ? $customer_id_arry : "",
                         "user_permission" => isset($data['user_permission']) ? $data['user_permission'] : array(),
                         "url_permission" => isset($data['url']) ? $data['url'] : array(),
                     )

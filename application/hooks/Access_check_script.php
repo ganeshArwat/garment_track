@@ -17,8 +17,8 @@ class Access_check_script
         $current_url = site_url() . $current_url . '/';
 
         $skip_url_permission = array(
-            "0" => 'garment_track_theme/adminx',
-            "1" => 'garment_track_theme/sohem-testing'
+            "0" => 'garment_track_/adminx',
+            "1" => 'garment_track_/sohem-testing'
         );
 
         if (!in_array($url, $skip_url_permission)) {
@@ -60,7 +60,7 @@ class Access_check_script
         $segment2 =  $CI->uri->segment(2);
 
         $connected_db =  $CI->db->database;
-        if ($connected_db != 'garment_track_theme') {
+        if ($connected_db != 'garment_track_') {
             $connected_db_arrr = explode("_", $connected_db);
             $company_id = isset($connected_db_arrr[2]) ? $connected_db_arrr[2] : 0;
             if ($company_id > 0) {

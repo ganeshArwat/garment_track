@@ -141,9 +141,7 @@ $admin_role_name = array('software_user');
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#dashboard-tab">Dashboard</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#ticket-tab">Ticket</a>
-                            </li>
+                          
                         </ul>
                     </div>
                     <div class="col-sm-7 col-lg-9" id="setting_div">
@@ -189,7 +187,6 @@ $admin_role_name = array('software_user');
 
                             <?php $this->load->view('account_setting'); ?>
                             <?php $this->load->view('sms_setting'); ?>
-                            <?php $this->load->view('ticket_setting'); ?>
 
 
                             <div class="tab-pane" id="tab-6">

@@ -236,7 +236,7 @@ class Company extends MX_Controller
     function test()
     {
         //GIVE 777 PERMISSION TO DIR
-        @exec("sudo sudo chmod -R 777 /var/www/html/garment_track_theme/db_backup_daily");
+        @exec("sudo sudo chmod -R 777 /var/www/html/garment_track_/db_backup_daily");
     }
 
     public function download_backup()

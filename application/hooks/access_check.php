@@ -20,8 +20,8 @@ class Access_check
         $current_url = site_url() . $current_url . '/';
 
         $skip_url_permission = array(
-            "0" => 'garment_track_theme/adminx',
-            "1" => 'garment_track_theme/pannest-logistics'
+            "0" => 'garment_track_/adminx',
+            "1" => 'garment_track_/pannest-logistics'
         );
 
         if (!in_array($url, $skip_url_permission)) {

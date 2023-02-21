@@ -7,7 +7,7 @@ if (!function_exists('create_company_database')) {
         if ($company_id > 0) {
             $ci->load->database();
             $ci->load->dbutil();
-            $company_db_name = "garment_track_theme_company_" . $company_id;
+            $company_db_name = "garment_track__company_" . $company_id;
             if (!$ci->dbutil->database_exists($company_db_name)) {
                 $ci->load->dbforge();
                 $ci->dbforge->create_database($company_db_name);
@@ -26,11 +26,11 @@ if (!function_exists('create_all_table')) {
         $session_data = isset($_SESSION['admin_user']) ? $_SESSION['admin_user'] : array();
 
         if (isset($_GET['cron_company']) && $_GET['cron_company'] > 0) {
-            $database_name = "garment_track_theme_company_" . $_GET['cron_company'];
+            $database_name = "garment_track__company_" . $_GET['cron_company'];
         } else  if (isset($session_data['is_restrict']) && $session_data['is_restrict'] == 2) {
-            $database_name = "garment_track_theme_company_" . $session_data['com_id'];
+            $database_name = "garment_track__company_" . $session_data['com_id'];
         } else {
-            $database_name = "garment_track_theme";
+            $database_name = "garment_track_";
         }
 
         //CHECK FUNCTION EXIST
@@ -40,7 +40,7 @@ if (!function_exists('create_all_table')) {
 
         if (isset($functionExist) && is_array($functionExist) && count($functionExist) > 0) {
         } else {
-            $regex_function = "CREATE FUNCTION `REGEXP_REPLACE`(original VARCHAR(1000),pattern VARCHAR(1000),replacement VARCHAR(1000))
+            $regex_function = "CREATE FUNCTION IF NOT EXISTS `REGEXP_REPLACE`(original VARCHAR(1000),pattern VARCHAR(1000),replacement VARCHAR(1000))
         RETURNS VARCHAR(1000)
         DETERMINISTIC
         BEGIN 

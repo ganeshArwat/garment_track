@@ -19,7 +19,7 @@ function html_to_pdf($path, $view_name, $data, $file_name, $options = array())
     foreach ($pdfdata as $key => $value) {
         unset($pdf);
         $pdf = new Pdf($pdfdata[$key]['pdfdata']);
-        //$pdf->binary = '/var/www/html/garment_track_theme/wkhtmltopdf';
+        //$pdf->binary = '/var/www/html/garment_track_/wkhtmltopdf';
         //$pdf->binary = 'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf';
         $pdf->binary = PDF_LIB_LOCATION;
         $pdf->setOptions($options);

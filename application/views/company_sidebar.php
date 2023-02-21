@@ -7,9 +7,6 @@ $billing_role = $this->config->item('billing_role');
 $admin_role_name = $this->config->item('admin_role_name');
 $this->load->helper('frontend_common');
 $get_all_email = get_all_itd_admin();
-if (isset($session_data['is_restrict']) && $session_data['is_restrict'] == 2) {
-    $get_all_ticket = get_all_allocated_ticket();
-}
 $app_setting = get_app_setting(" AND module_name IN('general')");
 ?>
 <?php $app_setting = get_app_setting(" AND module_name IN('main','manifest','customer_estimate','account','general')");

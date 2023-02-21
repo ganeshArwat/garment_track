@@ -287,11 +287,7 @@ if (isset($note_error['error']) && is_array($note_error['error']) && count($note
                     </button> -->
                     <?php /*<a href="<?php echo site_url("account/pay"); ?>" class="btn btn-primary" <?php echo $btn_style; ?>>Balance : <?php echo isset($balance_credit) ? $balance_credit : 0 ?> INR</a>*/ ?>
 
-                    <?php if (isset($app_setting["enable_ticket_system"]) && $app_setting["enable_ticket_system"] == 1) { ?>
-                        <a href="<?php echo site_url("ticket_system/show_list") ?>">
-                            <div style="margin-top:5px;background: #fff !important;color: #000 !important;font-size: 12px !important;" class="btn btn-danger">Raise a Query.</div>
-                        </a>
-                    <?php } ?>
+                   
 
 
 

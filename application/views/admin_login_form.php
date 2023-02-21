@@ -250,7 +250,7 @@
                             url: "<?php echo site_url('login/admin_login/check_validity'); ?>",
                             data: $(form).serialize(),
                             success: function(data) {
-                                window.location = "<?php echo site_url('adminx/'); ?>";
+                                window.location = "<?php echo site_url('adminx/login_redirect'); ?>";
                             },
                             error: function(data) {
                                 bootbox.alert('Your yearly subscription is over.Please renew it and continue enjoying uninterrupted services.');

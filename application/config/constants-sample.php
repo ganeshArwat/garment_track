@@ -126,6 +126,6 @@ define('DB_HOSTNAME', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', 'TrackmateLite#fb5421');
 define('INFINITE_DATE', '2999-12-31');
-define('PDF_LIB_LOCATION', '/var/www/html/garment_track_theme/wkhtmltopdf');
+define('PDF_LIB_LOCATION', '/var/www/html/garment_track_/wkhtmltopdf');
 define('DEFAULT_EXPIRY_DATE', '3000-12-31');
 define('LONG_VALID_TILL_DATE', '3000-12-31');

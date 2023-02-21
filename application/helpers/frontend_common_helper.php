@@ -286,10 +286,7 @@ if (!function_exists('get_last_range')) {
         $max_range = 0;
         $CI = &get_instance();
         $auto_module = array(
-            'credit_debit_note', 'payment_receipt', 'purchase_payment_receipt', 'docket',
-            'pickup_request', 'manifest', 'purchase_credit_debit_note', 'docket_extra_field', 'ticket', 'inventory',
-            'pick_up_sheets'
-            // 'consignee', 'shipper'
+
         );
         // if (in_array($master, $auto_module)) {
         //     $qry = "SELECT MAX(cast(" . $column_name . " as unsigned)) as max_code FROM " . $master;
