@@ -7,7 +7,7 @@ if (!function_exists('create_company_database')) {
         if ($company_id > 0) {
             $ci->load->database();
             $ci->load->dbutil();
-            $company_db_name = "garment_track__company_" . $company_id;
+            $company_db_name = "garment_track_company_" . $company_id;
             if (!$ci->dbutil->database_exists($company_db_name)) {
                 $ci->load->dbforge();
                 $ci->dbforge->create_database($company_db_name);
@@ -26,9 +26,9 @@ if (!function_exists('create_all_table')) {
         $session_data = isset($_SESSION['admin_user']) ? $_SESSION['admin_user'] : array();
 
         if (isset($_GET['cron_company']) && $_GET['cron_company'] > 0) {
-            $database_name = "garment_track__company_" . $_GET['cron_company'];
+            $database_name = "garment_track_company_" . $_GET['cron_company'];
         } else  if (isset($session_data['is_restrict']) && $session_data['is_restrict'] == 2) {
-            $database_name = "garment_track__company_" . $session_data['com_id'];
+            $database_name = "garment_track_company_" . $session_data['com_id'];
         } else {
             $database_name = "garment_track_";
         }

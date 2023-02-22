@@ -21,7 +21,6 @@ class Global_model extends CI_Model
             }
         }
         $add_record = 1;
-
         if ($add_record == 1) {
            
             $this->db->insert($table_name, $insert_data);

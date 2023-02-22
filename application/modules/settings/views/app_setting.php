@@ -69,7 +69,7 @@ $admin_role_name = array('software_user');
                 <?php
 
                 if ($session_data["email"] == "virag@itdservices.in") { ?>
-                    <input type="text" class="form-control" id="setting_search" style="display: inline;width: 55%;margin-left: 30px;" placeholder="SEARCH SETTINGS HERE..." />
+                    <input type="text" class="form-control" id="setting_search" style="display: inline;width: 83%;margin-left: 0;" placeholder="SEARCH SETTINGS HERE..." />
                     <?php if (isset($mode) && $mode == "add_comments" && $session_data['email'] == "virag@itdservices.in") { ?>
                         <button type="submit" class="btn btn-primary pull-right">SAVE COMMENTS</button>
                     <?php } else { ?>
@@ -139,9 +139,14 @@ $admin_role_name = array('software_user');
                 $('.tab-pane').removeClass('active');
                 $('.nav-link').removeClass('serachTab');
                 //FISRT TAB NAME
-                var firstTab = "general-tab";
-                $('a[href$="#' + firstTab + '"]').addClass('active');
-                $("#" + firstTab).addClass('active');
+                if(ActiveTab == ""){
+                    var firstTab = "#general-tab";
+                }else{
+                    var firstTab = ActiveTab;
+                }
+                // $('a[href$="#' + firstTab + '"]').addClass('active');
+                $('a[href$="' + firstTab + '"]').addClass('active');
+                $(firstTab).addClass('active');
             });
         } else {
             $("#setting_div .col-form-label").filter(function() {
