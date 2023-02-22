@@ -33,14 +33,14 @@ class Company_master extends MX_Controller
         $this->load->helper('url');
         $this->load->helper('frontend_common');
         $data['mode'] = 'insert';
-        $data['all_bank_account_type'] = all_bank_account_type();
-        $data['all_billing_company'] = get_all_billing_company();
-        $data['all_master_type'] = get_all_master_service_type();
-        $data['all_invoice_range'] = get_all_invoice_range();
-        $data['opening_bal_type'] = all_opening_type();
-        $data['all_gst_type'] = all_company_gst_type();
+        $data['all_bank_account_type'] = array();
+        $data['all_billing_company'] = array();
+        $data['all_master_type'] = array();
+        $data['all_invoice_range'] = array();
+        $data['opening_bal_type'] = array();
+        $data['all_gst_type'] = array();
 
-        $data['all_from_email'] = get_all_from_email();
+        $data['all_from_email'] = array();
         $data['bank_data'][] = array();
         $this->_display('show_form', $data);
     }
@@ -79,76 +79,6 @@ class Company_master extends MX_Controller
             $insert_data['created_date'] = date('Y-m-d H:i:s');
             $id = $this->gm->insert('company_master', $insert_data);
 
-
-            //ADD BANK DETAILS
-            $post_data = $this->input->post();
-            if (isset($post_data['bank_name']) && is_array($post_data['bank_name']) && count($post_data['bank_name']) > 0) {
-                foreach ($post_data['bank_name'] as $key => $value) {
-                    if ($value != '') {
-                        $bank_data = array(
-                            'company_master_id' => $id,
-                            'bank_name' => $value,
-                            'serial_no' => isset($post_data['serial_no'][$key]) ? $post_data['serial_no'][$key] : 0,
-                            'account_type' => isset($post_data['account_type'][$key]) ? $post_data['account_type'][$key] : 0,
-                            'bank_swift_id' => isset($post_data['bank_swift_id'][$key]) ? $post_data['bank_swift_id'][$key] : '',
-                            'branch' => isset($post_data['branch'][$key]) ? $post_data['branch'][$key] : '',
-                            'account_name' => isset($post_data['account_name'][$key]) ? $post_data['account_name'][$key] : '',
-                            'ifsc_code' => isset($post_data['ifsc_code'][$key]) ? $post_data['ifsc_code'][$key] : '',
-                            'sort_code' => isset($post_data['sort_code'][$key]) ? $post_data['sort_code'][$key] : '',
-                            'bank_iban' => isset($post_data['bank_iban'][$key]) ? $post_data['bank_iban'][$key] : '',
-                            'account_no' => isset($post_data['account_no'][$key]) ? $post_data['account_no'][$key] : '',
-                            'address' => isset($post_data['address'][$key]) ? $post_data['address'][$key] : '',
-                            'opening_amount' => isset($post_data['opening_amount'][$key]) ? $post_data['opening_amount'][$key] : '',
-                            'opening_date' => isset($post_data['opening_date'][$key]) ? $post_data['opening_date'][$key] : '',
-                            'opening_type' => isset($post_data['opening_type'][$key]) ? $post_data['opening_type'][$key] : '',
-                            'upi_id' => isset($post_data['upi_id'][$key]) ? $post_data['upi_id'][$key] : '',
-                            'upi_number' => isset($post_data['upi_number'][$key]) ? $post_data['upi_number'][$key] : '',
-                            'status' => isset($post_data['account_status'][$key]) ? $post_data['account_status'][$key] : 1,
-                            'qr_status' => isset($post_data['qr_status'][$key]) ? $post_data['qr_status'][$key] : 2,
-                            'created_by' => $this->user_id,
-                            'created_date' => date('Y-m-d H:i:s')
-                        );
-
-                        if (isset($upi_images[$key])) {
-                            $bank_data['upi_image'] = $upi_images[$key];
-                        }
-
-                        $company_bank_id =  $this->gm->insert('company_bank', $bank_data);
-
-                        if ($bank_data['opening_amount'] > 0) {
-                            add_bank_ledger_item($company_bank_id, 1, $bank_data['opening_type'], $company_bank_id);
-                        }
-                    }
-                }
-            }
-
-
-            if (isset($post_data['master_service_type']) && is_array($post_data['master_service_type']) && count($post_data['master_service_type']) > 0) {
-                foreach ($post_data['master_service_type'] as $key => $value) {
-                    if (isset($post_data['invoice_range_id'][$key]) && $post_data['invoice_range_id'][$key] > 0) {
-                        $range_data = array(
-                            'company_master_id' => $id,
-                            'master_service_type' => $value,
-                            'invoice_range_id' => isset($post_data['invoice_range_id'][$key]) ? $post_data['invoice_range_id'][$key] : '',
-                        );
-                        $range_data['created_date'] = date('Y-m-d H:i:s');
-                        $range_data['created_by'] = $this->user_id;
-                        $this->gm->insert('company_invoice_range', $range_data);
-                    }
-                }
-            }
-
-            if (isset($post_data['non_gst']) && is_array($post_data['non_gst']) && count($post_data['non_gst']) > 0) {
-                if ($post_data['non_gst']['code'] != '') {
-                    $non_gst_data = $post_data['non_gst'];
-                    $non_gst_data['name'] = $post_data['non_gst']['code'];
-                    $non_gst_data['is_non_gst'] = 1;
-                    $non_gst_data['company_master_id'] = $id;
-                    $non_gst_data['created_date'] = date('Y-m-d H:i:s');
-                    $non_gst_data['created_by'] = $this->user_id;
-                    $this->gm->insert('invoice_range', $non_gst_data);
-                }
-            }
             $this->session->set_flashdata('add_feedback', $this->heading . ' added successfully');
             redirect(site_url('company_master/edit/' . $id));
         } else {
@@ -194,7 +124,7 @@ class Company_master extends MX_Controller
 
         $data['total'] = isset($count['id']) ? $count['id'] : 0;
         $data['offset'] = $offset;
-        $data['all_billing_company'] = get_all_billing_company();
+        $data['all_billing_company'] = array();
         return $data;
     }
     public function show_list()
@@ -246,29 +176,15 @@ class Company_master extends MX_Controller
 
         if (isset($data['company']) && is_array($data['company']) && count($data['company']) > 0) {
             $data['mode'] = 'update';
-            $data['all_bank_account_type'] = all_bank_account_type();
-            $data['all_billing_company'] = get_all_billing_company();
-            $data['all_master_type'] = get_all_master_service_type();
-            $data['all_invoice_range'] = get_all_invoice_range();
-            $data['opening_bal_type'] = all_opening_type();
-            $data['all_gst_type'] = all_company_gst_type();
-            $data['all_from_email'] = get_all_from_email();
-            $data['all_country'] = get_all_country(" AND status IN(1,2)", "name");
-            //GET BANK DATA
-            $data['bank_data'] = $this->gm->get_data_list('company_bank', array('company_master_id' => $id), array(), array(), '*');
-
-            $data['non_gst_data'] = $this->gm->get_selected_record('invoice_range', '*', array('company_master_id' => $id, 'status' => 1, 'is_non_gst' => 1), array());
-
-            $company_range = $this->gm->get_data_list('company_invoice_range', array('company_master_id' => $id, 'status' => 1), array(), array(), 'id,master_service_type,invoice_range_id');
-            if (isset($company_range) && is_array($company_range) && count($company_range) > 0) {
-                foreach ($company_range as $ckey => $cvalue) {
-                    $data['company_range'][$cvalue['master_service_type']] = $cvalue['invoice_range_id'];
-                }
-            }
-
-            $data['all_co_vendor'] = get_all_co_vendor();
-            $data['all_customer'] = get_all_customer();
-
+            $data['all_bank_account_type'] = array();
+            $data['all_billing_company'] = array();
+            $data['all_master_type'] = array();
+            $data['all_invoice_range'] = array();
+            $data['opening_bal_type'] = array();
+            $data['all_gst_type'] = array();
+            $data['all_from_email'] = array();
+            $data['all_country'] = array();
+       
             $this->_display('show_form', $data);
         } else {
             redirect(site_url('company_master/show_list'));
@@ -321,116 +237,8 @@ class Company_master extends MX_Controller
 
                 $this->gm->update('company_master', $insert_data, '', array('id' => $post_data['company_id']));
 
-                //ADD BANK DETAILS
                 $id = $post_data['company_id'];
-                $updateq = "UPDATE company_bank SET status=3 WHERE company_master_id=" . $id;
-                $this->db->query($updateq);
-
-
-
-                if (isset($post_data['bank_name']) && is_array($post_data['bank_name']) && count($post_data['bank_name']) > 0) {
-                    foreach ($post_data['bank_name'] as $key => $value) {
-                        if ($value != '') {
-                            $bank_data = array(
-                                'company_master_id' => $id,
-                                'bank_name' => $value,
-                                'serial_no' => isset($post_data['serial_no'][$key]) ? $post_data['serial_no'][$key] : 0,
-                                'account_type' => isset($post_data['account_type'][$key]) ? $post_data['account_type'][$key] : 0,
-                                'bank_swift_id' => isset($post_data['bank_swift_id'][$key]) ? $post_data['bank_swift_id'][$key] : '',
-                                'branch' => isset($post_data['branch'][$key]) ? $post_data['branch'][$key] : '',
-                                'account_name' => isset($post_data['account_name'][$key]) ? $post_data['account_name'][$key] : '',
-                                'ifsc_code' => isset($post_data['ifsc_code'][$key]) ? $post_data['ifsc_code'][$key] : '',
-                                'sort_code' => isset($post_data['sort_code'][$key]) ? $post_data['sort_code'][$key] : '',
-                                'bank_iban' => isset($post_data['bank_iban'][$key]) ? $post_data['bank_iban'][$key] : '',
-                                'account_no' => isset($post_data['account_no'][$key]) ? $post_data['account_no'][$key] : '',
-                                'address' => isset($post_data['address'][$key]) ? $post_data['address'][$key] : '',
-                                'opening_amount' => isset($post_data['opening_amount'][$key]) ? $post_data['opening_amount'][$key] : '',
-                                'opening_date' => isset($post_data['opening_date'][$key]) ? $post_data['opening_date'][$key] : '',
-                                'opening_type' => isset($post_data['opening_type'][$key]) ? $post_data['opening_type'][$key] : '',
-                                'status' => isset($post_data['account_status'][$key]) ? $post_data['account_status'][$key] : 1,
-                                'upi_id' => isset($post_data['upi_id'][$key]) ? $post_data['upi_id'][$key] : '',
-                                'upi_number' => isset($post_data['upi_number'][$key]) ? $post_data['upi_number'][$key] : '',
-                                'qr_status' => isset($post_data['qr_status'][$key]) ? $post_data['qr_status'][$key] : 2,
-                            );
-
-                            if (isset($upi_images[$key])) {
-                                $bank_data['upi_image'] = $upi_images[$key];
-                            }
-
-                            if (isset($post_data['bank_id'][$key]) && $post_data['bank_id'][$key] > 0) {
-                                $bank_data['modified_date'] = date('Y-m-d H:i:s');
-                                $bank_data['modified_by'] = $this->user_id;
-                                $bank_data['status'] =  isset($post_data['account_status'][$key]) ? $post_data['account_status'][$key] : 1;
-                                $this->gm->update('company_bank', $bank_data, '', array('id' => $post_data['bank_id'][$key]));
-                                $company_bank_id = $post_data['bank_id'][$key];
-                            } else {
-                                $bank_data['created_date'] = date('Y-m-d H:i:s');
-                                $bank_data['created_by'] = $this->user_id;
-                                $company_bank_id =  $this->gm->insert('company_bank', $bank_data);
-                            }
-
-                            if ($bank_data['opening_amount'] > 0) {
-                                add_bank_ledger_item($company_bank_id, 1, $bank_data['opening_type'], $company_bank_id);
-                            }
-                        }
-                    }
-                }
-
-
-                //ADD INVOICE RANGE DATA
-                $id = $post_data['company_id'];
-                $updateq = "UPDATE company_invoice_range SET status=3 WHERE company_master_id=" . $id;
-                $this->db->query($updateq);
-
-                if (isset($post_data['master_service_type']) && is_array($post_data['master_service_type']) && count($post_data['master_service_type']) > 0) {
-                    foreach ($post_data['master_service_type'] as $key => $value) {
-                        if (isset($post_data['invoice_range_id'][$key]) && $post_data['invoice_range_id'][$key] > 0) {
-                            //check invoice range present for service type or not
-                            $rangeExist = $this->gm->get_selected_record('company_invoice_range', 'id', array('master_service_type' => $value, 'company_master_id' => $id), array());
-
-                            $range_data = array(
-                                'company_master_id' => $id,
-                                'master_service_type' => $value,
-                                'invoice_range_id' => isset($post_data['invoice_range_id'][$key]) ? $post_data['invoice_range_id'][$key] : '',
-                            );
-                            if (isset($rangeExist) && is_array($rangeExist) && count($rangeExist) > 0) {
-                                $range_data['modified_date'] = date('Y-m-d H:i:s');
-                                $range_data['modified_by'] = $this->user_id;
-                                $range_data['status'] = 1;
-                                $this->gm->update('company_invoice_range', $range_data, '', array('id' => $rangeExist['id']));
-                            } else {
-                                $range_data['created_date'] = date('Y-m-d H:i:s');
-                                $range_data['created_by'] = $this->user_id;
-                                $this->gm->insert('company_invoice_range', $range_data);
-                            }
-                        }
-                    }
-                }
-
-                //ADD NON_GST RANGE
-                $updateq = "UPDATE invoice_range SET status=3 WHERE is_non_gst=1 AND company_master_id=" . $id;
-                $this->db->query($updateq);
-
-                if (isset($post_data['non_gst']) && is_array($post_data['non_gst']) && count($post_data['non_gst']) > 0) {
-                    if ($post_data['non_gst']['code'] != '') {
-                        $non_gst_data = $post_data['non_gst'];
-                        $non_gst_data['name'] = $post_data['non_gst']['code'];
-                        $non_gst_data['is_non_gst'] = 1;
-                        $non_gst_data['company_master_id'] = $id;
-
-                        $nonGstExist = $this->gm->get_selected_record('invoice_range', 'id', array('is_non_gst' => 1, 'company_master_id' => $id), array());
-                        if (isset($nonGstExist) && is_array($nonGstExist) && count($nonGstExist) > 0) {
-                            $non_gst_data['modified_date'] = date('Y-m-d H:i:s');
-                            $non_gst_data['modified_by'] = $this->user_id;
-                            $non_gst_data['status'] = 1;
-                            $this->gm->update('invoice_range', $non_gst_data, '', array('id' => $nonGstExist['id']));
-                        } else {
-                            $non_gst_data['created_date'] = date('Y-m-d H:i:s');
-                            $non_gst_data['created_by'] = $this->user_id;
-                            $this->gm->insert('invoice_range', $non_gst_data);
-                        }
-                    }
-                }
+                
                 $this->session->set_flashdata('add_feedback', $this->heading . ' updated successfully');
                 redirect(site_url('company_master/edit/' . $id));
             } else {
@@ -473,53 +281,4 @@ class Company_master extends MX_Controller
         redirect('company_master/show_list?' . $url);
     }
 
-    function check_invoice_range()
-    {
-        $post = $this->input->post();
-        if (isset($post) && is_array($post) && count($post) > 0) {
-            $range_id = $post['range_id'];
-            $company_id = $post['company_id'];
-            $append = '';
-            if ($company_id > 0) {
-                $append = " AND r.company_master_id!='" . $company_id . "'";
-            }
-            $qry = "SELECT r.id FROM company_invoice_range r 
-            JOIN company_master c ON(c.id=r.company_master_id)
-            WHERE c.status IN(1,2) AND r.status IN(1,2) AND r.invoice_range_id='" . $range_id . "'" .  $append;
-            $qry_exe = $this->db->query($qry);
-            $result = $qry_exe->row_array();
-            if (isset($result) && is_array($result) && count($result) > 0) {
-                http_response_code(403);
-            } else {
-                http_response_code(200);
-            }
-        } else {
-            http_response_code(403);
-        }
-    }
-
-
-    function check_account_no()
-    {
-        $post = $this->input->post();
-        $account_result = array();
-        if (isset($post) && is_array($post) && count($post) > 0) {
-            $account_no = $post['account_no'];
-            $company_id = $post['company_id'];
-            $append = '';
-            if ($company_id > 0) {
-                $append = " AND r.company_master_id!='" . $company_id . "'";
-            }
-            $qry = "SELECT r.id FROM company_bank r 
-            JOIN company_master c ON(c.id=r.company_master_id)
-            WHERE c.status IN(1,2)  AND r.account_no='" . $account_no . "'" .  $append;
-            $qry_exe = $this->db->query($qry);
-            $result = $qry_exe->row_array();
-
-            if (isset($result) && is_array($result) && count($result) > 0) {
-                $account_result['error'] = 'Account NO. ' . $account_no . ' Present for other company';
-            }
-        }
-        echo json_encode($account_result);
-    }
 }

@@ -28,14 +28,6 @@ $tab_index = 1; ?>
           <a class="nav-item nav-link" id="nav-logo-tab" data-toggle="tab" href="#nav-logo" role="tab" aria-controls="nav-logo" aria-selected="false">
             <i class="fa fa-image"></i>&nbsp;Logo,sign & Stamp
           </a>
-          <a class="nav-item nav-link" id="nav-bank-tab" data-toggle="tab" href="#nav-bank" role="tab" aria-controls="nav-bank" aria-selected="false">
-            <i class="fa fa-home"></i>&nbsp;Bank Details
-          </a>
-
-          <a class="nav-item nav-link" id="nav-range-tab" data-toggle="tab" href="#nav-range" role="tab" aria-controls="nav-range" aria-selected="false">
-            <i class="fa fa-file"></i>&nbsp;INVOICE NUMBER RANGE
-          </a>
-
         </div>
       </nav>
       <div style="background: #ffd4d4;color: #7f2828;padding: 2px;display:none;" class="error_msg">
@@ -427,12 +419,7 @@ $tab_index = 1; ?>
           </div>
         </div>
 
-        <div class="tab-pane fade" id="nav-bank" role="tabpanel" aria-labelledby="nav-bank-tab">
-          <?php $this->load->view('bank_form'); ?>
-        </div>
-        <div class="tab-pane fade" id="nav-range" role="tabpanel" aria-labelledby="nav-range-tab">
-          <?php $this->load->view('range_form'); ?>
-        </div>
+
         <div class="col-12">
           <div class="form-group row">
             <div class="col-sm-12">

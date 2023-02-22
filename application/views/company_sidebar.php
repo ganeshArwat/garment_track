@@ -113,6 +113,55 @@ if (isset($session_data['is_restrict']) && $session_data['is_restrict'] != 1) {
                             </ul>
                         </li>
                     <?php } ?>
+                    <!-- USERS -->
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-layout"></i>
+                            <div data-i18n="Layouts">USERS</div>
+                        </a>
+
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="<?php echo site_url('users/add'); ?>" class="menu-link">
+                                    <div data-i18n="Without menu">ALL USERS</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="<?php echo site_url('users/show_list'); ?>" class="menu-link">
+                                    <div data-i18n="Without navbar">ADD NEW USER</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- MASTERS -->
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-layout"></i>
+                            <div data-i18n="Layouts">MASTERS</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                    <i class="menu-icon tf-icons bx bx-layout"></i>
+                                    <div data-i18n="Layouts">COMPANY</div>
+                                </a>
+                                <ul class="menu-sub">
+                                    <li class="menu-item">
+                                        <a href="<?php echo site_url('company_master/add'); ?>" class="menu-link">
+                                            <div data-i18n="Without menu">ALL COMPANY</div>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="<?php echo site_url('company_master/show_list'); ?>" class="menu-link">
+                                            <div data-i18n="Without navbar">ADD NEW COMPANY</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </li>
                 </ul>
             </aside>
             <!-- / Menu -->
@@ -142,13 +191,13 @@ if (isset($session_data['is_restrict']) && $session_data['is_restrict'] != 1) {
                             <!-- Place this tag where you want the button to render. -->
 
                             <!-- /Place this tag where you want the button to render. -->
-                      
+
                             <!-- User -->
                             <span class="app-brand-text-upper demo menu-text fw-bolder ms-2"><?php echo isset($session_data['name']) && $session_data['name'] != "" ?  strtoupper($session_data['name']) : ""; ?></span>
 
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                                    
+
                                     <div class="avatar avatar-online">
                                         <img src="<?php echo BASE_URL; ?>assets/assets/img/avatars/user_avtar.png" alt class="w-px-40 h-auto rounded-circle" />
                                     </div>
@@ -159,7 +208,7 @@ if (isset($session_data['is_restrict']) && $session_data['is_restrict'] != 1) {
                                         <a class="dropdown-item" href="#">
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
-                                                    
+
                                                     <div class="avatar avatar-online">
                                                         <img src="<?php echo BASE_URL; ?>assets/assets/img/avatars/user_avtar.png" alt class="w-px-40 h-auto rounded-circle" />
                                                     </div>
