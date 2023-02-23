@@ -22,7 +22,7 @@ class Global_model extends CI_Model
         }
         $add_record = 1;
         if ($add_record == 1) {
-           
+
             $this->db->insert($table_name, $insert_data);
             $id = $this->db->insert_id();
         }
@@ -127,15 +127,9 @@ class Global_model extends CI_Model
         if ($this->has_empty($where)) {
             return false;
         } else {
-           
-            if ($table_name == 'docket' &&  $where['id'] > 0) {
-
             $this->db->where($where);
-
             $update_status = $this->db->update($table_name, $update_data);
-
             return $update_status;
         }
     }
-}
 }
