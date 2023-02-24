@@ -122,12 +122,12 @@ if (isset($session_data['is_restrict']) && $session_data['is_restrict'] != 1) {
 
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <a href="<?php echo site_url('users/add'); ?>" class="menu-link">
+                                <a href="<?php echo site_url('users/show_list'); ?>" class="menu-link">
                                     <div data-i18n="Without menu">ALL USERS</div>
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a href="<?php echo site_url('users/show_list'); ?>" class="menu-link">
+                                <a href="<?php echo site_url('users/add'); ?>" class="menu-link">
                                     <div data-i18n="Without navbar">ADD NEW USER</div>
                                 </a>
                             </li>
@@ -148,12 +148,12 @@ if (isset($session_data['is_restrict']) && $session_data['is_restrict'] != 1) {
                                 </a>
                                 <ul class="menu-sub">
                                     <li class="menu-item">
-                                        <a href="<?php echo site_url('company_master/add'); ?>" class="menu-link">
+                                        <a href="<?php echo site_url('company_master/show_list'); ?>" class="menu-link">
                                             <div data-i18n="Without menu">ALL COMPANY</div>
                                         </a>
                                     </li>
                                     <li class="menu-item">
-                                        <a href="<?php echo site_url('company_master/show_list'); ?>" class="menu-link">
+                                        <a href="<?php echo site_url('company_master/add'); ?>" class="menu-link">
                                             <div data-i18n="Without navbar">ADD NEW COMPANY</div>
                                         </a>
                                     </li>

@@ -244,7 +244,7 @@
                     url: "<?php echo site_url('login/admin_login/uvf_login'); ?>",
                     data: $(form).serialize(),
                     success: function(data) {
-                        // window.location = "<?php echo site_url('adminx'); ?>";
+                        //window.location = "<//?php echo site_url('adminx'); ?>";
                         $.ajax({
                             type: "POST",
                             url: "<?php echo site_url('login/admin_login/check_validity'); ?>",

@@ -37,11 +37,11 @@ class Admin_login extends MX_Controller
             if ($this->session->userdata('RememberURL')) {
                 redirect($this->session->userdata('RememberURL'));
             } else {
-         
+
                 $main_db = $this->load->database('main_db', true);
                 $company_sef = $this->uri->segment(1);
                 $company_sef2 = $this->uri->segment(2);
-                
+
                 if ($company_sef == 'login' && $company_sef2 == 'admin_login') {
                     $qry = "SELECT id,company_name,sef_url,logo FROM company WHERE status IN(1,2) AND id='1'";
                     $qry_exe = $main_db->query($qry);
@@ -71,7 +71,7 @@ class Admin_login extends MX_Controller
                             unset($row);
                             $portal_domain_login = 1;
                             $this->show_user_login();
-                        }else {
+                        } else {
                             //LOGIN USING COMPANY IP ADDRESS
                             $qry = "SELECT id,company_name,sef_url,logo,status FROM company WHERE status IN(1,2) AND company_domain='" . $host_name . "'";
                             $qry_exe = $main_db->query($qry);
@@ -106,7 +106,7 @@ class Admin_login extends MX_Controller
                     // IF COMPANY IS INACTIVE THEN SHOW MAINTENANCE MESSAGE
                     echo "<h3 style='color: red;font-size: 27px;font-weight: 700;'>Hello Team,<br>
                     Sorry, we're down for scheduled maintenance. </h3>";
-                    
+
                     exit;
                 }
 
@@ -138,10 +138,10 @@ class Admin_login extends MX_Controller
                                         }
                                     }
                                 }
-                            }else{
+                            } else {
                                 $logo_path = array();
                             }
-                            $conn->close(); 
+                            $conn->close();
                         }
                         $data['company_logo'] = isset($logo_path['logo_file']) ? $logo_path['logo_file'] : $row['logo'];
 
@@ -332,6 +332,7 @@ class Admin_login extends MX_Controller
     function check_validity()
     {
         $session_data = $this->session->userdata('admin_user');
+
         if ($session_data['is_restrict'] == 1) {
             http_response_code(200);
         } else {
@@ -373,11 +374,12 @@ class Admin_login extends MX_Controller
 
             $this->load->helper('security');
             $saltpass = md5(trim(strip_tags($password)));
+            
+
             /*
              * get id,email,type from user table
              */
             $append = "";
-
             if ($company_sef != '' && $company_sef != 'login' && $company_sef != 'admin_login') {
                 $company_sef = strtolower($company_sef);
                 $append .= " AND c.sef_url='" . $company_sef . "'";
@@ -396,7 +398,6 @@ class Admin_login extends MX_Controller
             $qry_exe = $main_db->query($qry);
             $row = $qry_exe->row_array();
 
-
             if (isset($row['id']) && is_array($row) && count($row) > 0) {
                 //GET LOGO USING SETTING
                 $company_id = $row['com_id'];
@@ -405,20 +406,26 @@ class Admin_login extends MX_Controller
                     if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                     }
-                    $sql =  "SELECT id,config_key,config_value FROM app_settings WHERE status IN(1,2) AND config_key='display_logo_of_which_company'";
-                    $logo_com_result = $conn->query($sql);
-                    if ($logo_com_result->num_rows > 0) {
-                        $logo_row = $logo_com_result->fetch_assoc();
-                        if (isset($logo_row['config_value']) && $logo_row['config_value'] > 0) {
-                            $sql =  "SELECT id,logo_file FROM company_master WHERE status IN(1,2) AND id='" . $logo_row['config_value'] . "'";
-                            $logo_path_result = $conn->query($sql);
-                            if ($logo_path_result->num_rows > 0) {
-                                $logo_path = $logo_path_result->fetch_assoc();
+                    $table_exist_query = "SHOW TABLES LIKE 'app_settings'";
+                    $table_result = $conn->query($table_exist_query);
+                    if ($table_result->num_rows > 0) {
+                        $sql =  "SELECT id,config_key,config_value FROM app_settings WHERE status IN(1,2) AND config_key='display_logo_of_which_company'";
+                        $logo_com_result = $conn->query($sql);
+                        if ($logo_com_result->num_rows > 0) {
+                            $logo_row = $logo_com_result->fetch_assoc();
+                            if (isset($logo_row['config_value']) && $logo_row['config_value'] > 0) {
+                                $sql =  "SELECT id,logo_file FROM company_master WHERE status IN(1,2) AND id='" . $logo_row['config_value'] . "'";
+                                $logo_path_result = $conn->query($sql);
+                                if ($logo_path_result->num_rows > 0) {
+                                    $logo_path = $logo_path_result->fetch_assoc();
+                                }
                             }
                         }
+                    } else {
+                        $logo_path = array();
                     }
 
-                 
+
                     $company_logo = isset($logo_path['logo_file'])  && $logo_path['logo_file'] != "" ? $logo_path['logo_file'] : $row['logo'];
 
                     if ($ismobile == 1) {
@@ -467,6 +474,7 @@ class Admin_login extends MX_Controller
                 );
                 $this->session->set_userdata($user_data);
 
+            
 
 
                 $this->load->helper('cookie');
@@ -522,7 +530,7 @@ class Admin_login extends MX_Controller
                     if ($sef == '' && $com_id == 1) {
                         redirect(site_url('login/admin_login'));
                     } else {
-                        redirect(site_url('login/admin_login'));
+                        redirect(site_url($sef));
                     }
                 }
             } else {
