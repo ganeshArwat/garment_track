@@ -33,15 +33,6 @@ class Company_master extends MX_Controller
         $this->load->helper('url');
         $this->load->helper('frontend_common');
         $data['mode'] = 'insert';
-        $data['all_bank_account_type'] = array();
-        $data['all_billing_company'] = array();
-        $data['all_master_type'] = array();
-        $data['all_invoice_range'] = array();
-        $data['opening_bal_type'] = array();
-        $data['all_gst_type'] = array();
-
-        $data['all_from_email'] = array();
-        $data['bank_data'][] = array();
         $this->_display('show_form', $data);
     }
     public function insert()
@@ -176,14 +167,6 @@ class Company_master extends MX_Controller
 
         if (isset($data['company']) && is_array($data['company']) && count($data['company']) > 0) {
             $data['mode'] = 'update';
-            $data['all_bank_account_type'] = array();
-            $data['all_billing_company'] = array();
-            $data['all_master_type'] = array();
-            $data['all_invoice_range'] = array();
-            $data['opening_bal_type'] = array();
-            $data['all_gst_type'] = array();
-            $data['all_from_email'] = array();
-            $data['all_country'] = array();
        
             $this->_display('show_form', $data);
         } else {
