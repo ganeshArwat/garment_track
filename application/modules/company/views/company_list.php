@@ -11,26 +11,16 @@ $session_data = $this->session->userdata('admin_user');
             <form id="demo-form2" class="form-horizontal" action="<?php echo site_url('company/advance_search') ?>" method="POST">
                 <div class="row">
                     <div class="col-sm-3">
-                        <!-- text input -->
-                        <!-- <div class="form-group"> -->
-                        <!-- <label>Company Name</label> -->
-                        <!-- <input type="hidden" value="<?php echo isset($get_data['company_id']) ? $get_data['company_id'] : ''; ?>" id="company_id" name="company_id" /> -->
-                        <!-- <input placeholder="Search" class="form-control me-2" id="company_search_name" type="text" value="<?php echo isset($get_data['company_id']) && isset($all_company[$get_data['company_id']]) ? $all_company[$get_data['company_id']]['company_name'] : ''; ?>" /> -->
-                        <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" /> -->
-                        <!-- <span class="input-group-text"><i class="tf-icons bx bx-search"></i></span> -->
-                        <!-- <input type="text" class="form-control" placeholder="Search..." /> -->
-
-                        <!-- </div> -->
+                        
                         <div class="input-group" style="padding-top:23px;">
                             <span class="input-group-text"><i class="tf-icons bx bx-search"></i></span>
-                            <input type="text" class="form-control" placeholder="Search..." />
+                            <input type="hidden" value="<?php echo isset($get_data['company_id']) ? $get_data['company_id'] : ''; ?>" id="company_id" name="company_id" />
+                            <input type="text" class="form-control" id="company_search_name" placeholder="Search..." value="<?php echo isset($get_data['company_id']) && isset($all_company[$get_data['company_id']]) ? $all_company[$get_data['company_id']]['company_name'] : ''; ?>" />
                         </div>
                     </div>
 
                     <div class="col-sm-9">
-                        <!-- text input -->
-                        <!-- <button id="btn-search" class="btn btn-outline-primary" tabindex="7" type="submit">Search</button> -->
-
+                        <!-- text input --> 
                         <div class="form-group" style="padding-top:23px; padding-bottom: 11px;margin-left:437px">
 
                             <a tabindex="7" class="btn btn-info" title="View All Company" href="<?php echo site_url('company/show_list'); ?>"><i aria-hidden="true"></i>&nbsp;RESET</a>

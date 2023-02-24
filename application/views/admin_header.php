@@ -30,6 +30,8 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/assets/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="<?php echo CSS_PATH_BACKEND; ?>master_style.css?<?php echo fileatime('css/backend/master_style.css'); ?>">
+
 
     <!-- Page CSS -->
 
