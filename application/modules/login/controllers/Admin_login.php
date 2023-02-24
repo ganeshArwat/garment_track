@@ -123,25 +123,31 @@ class Admin_login extends MX_Controller
                             if ($conn->connect_error) {
                                 die("Connection failed: " . $conn->connect_error);
                             }
-                            $sql =  "SELECT id,config_key,config_value FROM app_settings WHERE status IN(1,2) AND config_key='display_logo_of_which_company'";
-                            $logo_com_result = $conn->query($sql);
-                            if ($logo_com_result->num_rows > 0) {
-                                $logo_row = $logo_com_result->fetch_assoc();
-                                if (isset($logo_row['config_value']) && $logo_row['config_value'] > 0) {
-                                    $sql =  "SELECT id,logo_file FROM company_master WHERE status IN(1,2) AND id='" . $logo_row['config_value'] . "'";
-                                    $logo_path_result = $conn->query($sql);
-                                    if ($logo_path_result->num_rows > 0) {
-                                        $logo_path = $logo_path_result->fetch_assoc();
+                            $table_exist_query = "SHOW TABLES LIKE 'app_settings'";
+                            $table_result = $conn->query($table_exist_query);
+                            if ($table_result->num_rows > 0) {
+                                $sql =  "SELECT id,config_key,config_value FROM app_settings WHERE status IN(1,2) AND config_key='display_logo_of_which_company'";
+                                $logo_com_result = $conn->query($sql);
+                                if ($logo_com_result->num_rows > 0) {
+                                    $logo_row = $logo_com_result->fetch_assoc();
+                                    if (isset($logo_row['config_value']) && $logo_row['config_value'] > 0) {
+                                        $sql =  "SELECT id,logo_file FROM company_master WHERE status IN(1,2) AND id='" . $logo_row['config_value'] . "'";
+                                        $logo_path_result = $conn->query($sql);
+                                        if ($logo_path_result->num_rows > 0) {
+                                            $logo_path = $logo_path_result->fetch_assoc();
+                                        }
                                     }
                                 }
+                            }else{
+                                $logo_path = array();
                             }
-                            $conn->close();
+                            $conn->close(); 
                         }
                         $data['company_logo'] = isset($logo_path['logo_file']) ? $logo_path['logo_file'] : $row['logo'];
 
                         $this->_display('admin_login_form', $data);
                     } else {
-                        $this->_display('admin_login_form', array());
+                        $this->_display('show_404_page', array());
                     }
                 }
             }
