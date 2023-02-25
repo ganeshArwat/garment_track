@@ -142,22 +142,9 @@ if (isset($session_data['is_restrict']) && $session_data['is_restrict'] != 1) {
                         </a>
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                                    <i class="menu-icon tf-icons bx bx-layout"></i>
+                                <a href="<?php echo site_url('company_master/show_list'); ?>" class="menu-link">
                                     <div data-i18n="Layouts">COMPANY</div>
                                 </a>
-                                <ul class="menu-sub">
-                                    <li class="menu-item">
-                                        <a href="<?php echo site_url('company_master/show_list'); ?>" class="menu-link">
-                                            <div data-i18n="Without menu">ALL COMPANY</div>
-                                        </a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a href="<?php echo site_url('company_master/add'); ?>" class="menu-link">
-                                            <div data-i18n="Without navbar">ADD NEW COMPANY</div>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
 
                         </ul>

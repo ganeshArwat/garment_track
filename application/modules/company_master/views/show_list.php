@@ -43,12 +43,12 @@ $admin_role_name = $this->config->item('admin_role_name');
                                 <?php
                                 if (in_array("update_company_master", $session_data['user_permission']) || !in_array($session_data['type'], $admin_role_name) || $session_data['role'] == $super_admin_role) {
                                 ?>
-                                    <a href="<?php echo site_url('company_master/edit/' . $value['id']) ?>" title="Update <?php echo $heading; ?>" class="edit_button">Edit</a>
+                                    <a href="<?php echo site_url('company_master/edit/' . $value['id']) ?>" title="Update <?php echo $heading; ?>" class="btn btn-secondary">Edit</a>
                                 <?php
                                 }
                                 if (in_array("delete_company_master", $session_data['user_permission']) || !in_array($session_data['type'], $admin_role_name) || $session_data['role'] == $super_admin_role) {
                                 ?>
-                                    <a onclick="delete_data('<?php echo $value['id']; ?>','company_master','<?php echo $heading; ?>');" href="#" title="Delete Company" class="delete_button">Delete</a>
+                                    <a onclick="delete_data('<?php echo $value['id']; ?>','company_master','<?php echo $heading; ?>');" href="#" title="Delete Company" class="btn btn-warning">Delete</a>
                                 <?php
                                 }
                                 ?>
