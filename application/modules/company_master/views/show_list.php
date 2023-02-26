@@ -4,8 +4,22 @@ $super_admin_role = $this->config->item('super_admin');
 $admin_role_name = $this->config->item('admin_role_name');
 ?>
 
-<div class="card">
+<div class="row">
+    <div class="mb-3 col-md-9">
+        <h3 class="px-2">
+            COMPANY LIST
+        </h3>
+    </div>
+    <div class="mb-3 col-md-3"> 
+        <a href="<?php echo site_url("company_master/add"); ?>" class="btn btn-primary me-2">
+            ADD COMPANY
+        </a>
 
+        
+        <button type="reset" class="btn btn-outline-secondary" onclick="history.back()" href="javascript:void(0);">BACK</button>
+    </div>
+</div>
+<div class="card">
     <div class="table-responsive text-nowrap">
         <table class="table table-striped">
             <thead>
