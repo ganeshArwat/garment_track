@@ -236,6 +236,7 @@ if (isset($session_data['is_restrict']) && $session_data['is_restrict'] != 1) {
                             <!--/ User -->
                         </ul>
                     </div>
+
                 </nav>
 
                 <!-- / Navbar -->
@@ -243,5 +244,17 @@ if (isset($session_data['is_restrict']) && $session_data['is_restrict'] != 1) {
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->
+                    <?php $show_payment = get_show_payment_message();
 
+                    if ($show_payment == 1 && isset($session_data['is_restrict']) && $session_data['is_restrict'] == 2 && true) {
+                        // echo "<pre>";print_r($session_data);exit;
+
+                    ?>
+                        <div style="height: 25px;">
+                            <marquee width="100%" direction="left" height="50px" style="color: red; font-size:25px" onmouseover="this.stop();" onmouseout="this.start();">
+                                Payment due : Check email for invoice : Please pay before due date 6th March 2023 to avoid disconnection. Please Ignore if already paid.
+                            </marquee>
+                        </div>
+                    <?php }
+                    ?>
                     <div class="container-xxl flex-grow-1 container-p-y">

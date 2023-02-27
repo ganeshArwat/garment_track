@@ -139,6 +139,7 @@
   </form>
   <!-- /.box-body -->
 </div>
+
 <?php $this->load->view('plugin/datepicker'); ?>
 <script type="text/javascript" src="<?php echo JS_PATH_BACKEND; ?>jquery.validate.js"></script>
 <script>

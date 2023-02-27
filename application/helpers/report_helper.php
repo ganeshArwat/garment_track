@@ -280,6 +280,25 @@ function get_company_powered_by()
     return $powered_desc;
 }
 
+function get_show_payment_message()
+{
+    $powered_desc = 1;
+    $com_id =  isset($_SESSION['admin_user']['com_id']) ? $_SESSION['admin_user']['com_id'] : 0;
+    
+    if ($com_id > 0) {
+        $CI = &get_instance();
+        $main_db = $CI->load->database('main_db', true);
+
+        $qry = "SELECT id,show_payment_message FROM company WHERE status IN(1,2) AND id='" . $com_id . "'";
+        $qry_exe = $main_db->query($qry);
+        $com_res = $qry_exe->row_array();
+        $powered_desc = isset($com_res['show_payment_message']) ? $com_res['show_payment_message'] : '';
+        
+
+    }
+
+    return $powered_desc;
+}
 
 
 function round_amount($amount = 0)
