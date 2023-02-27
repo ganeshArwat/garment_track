@@ -1024,3 +1024,21 @@ if (!function_exists('create_year_month_dir')) {
 }
 
 
+if (!function_exists('get_all_role')) {
+    function get_all_role($where = '', $result_key = 'id')
+    {
+        $result = array();
+        $CI = &get_instance();
+        $main_db = $CI->load->database('main_db', true);
+        $qry = "SELECT id,name FROM role WHERE status IN(1,2) " . $where . " ORDER BY name";
+        $qry_exe = $main_db->query($qry);
+        $role_data = $qry_exe->result_array();
+
+        if (isset($role_data) && is_array($role_data) && count($role_data) > 0) {
+            foreach ($role_data as $key => $value) {
+                $result[strtolower(trim($value[$result_key]))] = $value;
+            }
+        }
+        return $result;
+    }
+}
